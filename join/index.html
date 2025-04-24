@@ -73,23 +73,35 @@ body {
 
   
   
-  <form class="form-signin" action=https://docs.google.com/forms/d/e/1FAIpQLSeVEFNTGMAqxTYvfwTn8zxXCGJTQYFlv8a_yH-PwCmKgjE3HA/formResponse method=post onsubmit="submitted=!0" target=hidden_iframe>
-  
-  
-
-
-
   <body class="text-center">
-    <form class="form-signin">
-      <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Font_Awesome_5_solid_th-large.svg/2048px-Font_Awesome_5_solid_th-large.svg.png" alt="" width="72" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">Get early access</h1>
-      <p class="text-muted">Enter your email and we'll send you a code on the next batch of invites</p>
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" class="form-control" id="usrnm" placeholder="Enter Email" name="entry.557629265">
-      <br>
-      
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Go!</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2025-2026, stackboard technologies</p>
-    </form>
-  </body>
-</html>
+  <form class="form-signin" 
+        action="https://docs.google.com/forms/d/e/1FAIpQLSeVEFNTGMAqxTYvfwTn8zxXCGJTQYFlv8a_yH-PwCmKgjE3HA/formResponse" 
+        method="post" 
+        target="hidden_iframe"
+        onsubmit="return validateEmail();">
+
+    <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Font_Awesome_5_solid_th-large.svg/2048px-Font_Awesome_5_solid_th-large.svg.png" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Get early access</h1>
+    <p class="text-muted">Enter your email and we'll send you a code on the next batch of invites</p>
+
+    <label for="usrnm" class="sr-only">Email address</label>
+    <input type="email" class="form-control" id="usrnm" placeholder="Enter Email" name="entry.557629265" required>
+
+    <br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Go!</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2025-2026, stackboard technologies</p>
+  </form>
+
+  <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+  <script>
+    function validateEmail() {
+      const emailInput = document.getElementById('usrnm').value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailInput)) {
+        alert("Please enter a valid email address.");
+        return false;
+      }
+      return true;
+    }
+  </script>
