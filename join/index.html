@@ -66,19 +66,32 @@ body {
 }
 </style>
   </head>
-<script>
-    var submitted = !1
-</script>
-<iframe id=hidden_iframe name=hidden_iframe onload='submitted&&(window.location="https://start.stackboard.one/join/success")' style=display:none></iframe>
+<body class="text-center">
 
-  
-  
-  <body class="text-center">
+  <script>
+    var submitted = false;
+
+    function validateEmail(event) {
+      const emailInput = document.getElementById('usrnm').value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailInput)) {
+        alert("Please enter a valid email address.");
+        return false;
+      }
+      submitted = true;
+      return true;
+    }
+  </script>
+
+  <iframe id="hidden_iframe" name="hidden_iframe"
+    onload='if(submitted) { window.location="https://start.stackboard.one/join/success"; }'
+    style="display:none;"></iframe>
+
   <form class="form-signin" 
-        action="https://docs.google.com/forms/d/e/1FAIpQLSeVEFNTGMAqxTYvfwTn8zxXCGJTQYFlv8a_yH-PwCmKgjE3HA/formResponse" 
+        action="https://docs.google.com/forms/d/e/1FAIpQLSeVEFNTGMAqxTYvfwTn8zxXCGJTQYFlv8a_yH-PwCmKgjE3HA/formResponse"
         method="post" 
-        target="hidden_iframe"
-        onsubmit="return validateEmail();">
+        target="hidden_iframe" 
+        onsubmit="return validateEmail(event);">
 
     <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Font_Awesome_5_solid_th-large.svg/2048px-Font_Awesome_5_solid_th-large.svg.png" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Get early access</h1>
@@ -92,16 +105,5 @@ body {
     <p class="mt-5 mb-3 text-muted">&copy; 2025-2026, stackboard technologies</p>
   </form>
 
-  <iframe name="hidden_iframe" style="display:none;"></iframe>
-
-  <script>
-    function validateEmail() {
-      const emailInput = document.getElementById('usrnm').value.trim();
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(emailInput)) {
-        alert("Please enter a valid email address.");
-        return false;
-      }
-      return true;
-    }
-  </script>
+</body>
+</html>
